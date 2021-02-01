@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Home
+{% endblock %}
+
+{% block content %}
+<h1>Anime Index</h1>
+
+{% for show in shows_data %}
+<div class="card">
+    <div class="card-content">
+        <span class="car-title">{{show.name}}</span>
+        <p>Episodes: {{show.episodes}}</p>
+        <p>{{show.category}}</p>
+        <p>{{show.description}}</p>
+    </div>
+</div>
+{% endfor %}
+
+{% endblock %}
