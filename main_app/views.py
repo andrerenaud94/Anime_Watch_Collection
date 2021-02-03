@@ -10,4 +10,11 @@ def about(request):
     return render(request, 'about.html')
 
 def anime_index(request):
-    return render(request, 'anime/index.html')
+    anime = Anime.objects.all()
+    context = {'anime_data': anime}
+    return render(request, 'anime/index.html', context)
+
+def anime_detail(request, anime_id):
+    anime = Anime.objects.get(id=anime_id)
+    context = {'anime_data': anime}
+    return render(request, 'anime/detail.html', context)

@@ -5,17 +5,18 @@ Home
 {% endblock %}
 
 {% block content %}
-<h1>Anime Index</h1>
+    <h1>Anime Index</h1>
 
-{% for show in shows_data %}
-<div class="card">
-    <div class="card-content">
-        <span class="car-title">{{show.name}}</span>
-        <p>Episodes: {{show.episodes}}</p>
-        <p>{{show.category}}</p>
-        <p>{{show.description}}</p>
-    </div>
-</div>
-{% endfor %}
-
+    {% for anime in anime_data %}
+    <a href="{% url 'anime_detail' anime.id %}">
+        <div class="card">
+            <div class="card-content">
+                <span class="car-title">{{anime.name}}</span>
+                <p>Episodes: {{anime.episodes}}</p>
+                <p>{{anime.category}}</p>
+                <p>{{anime.description}}</p>
+            </div>
+        </div>
+    </a>
+    {% endfor %}
 {% endblock %}

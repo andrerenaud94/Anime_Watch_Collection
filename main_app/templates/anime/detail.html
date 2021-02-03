@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Detail
+{% endblock %}
+
+{% block content %}
+
+<h1>Show Details</h1>
+
+<div class="card">
+  <div class="card-content">
+    <span class="card-title">{{ anime_data.name }}</span>
+    <p>Episodes: {{ anime_data.episodes }}</p>
+    <br />
+    <p>Description: {{ anime_data.description }}</p>
+    <br />
+    <p>Category: {{anime_data.category}}</p>
+  </div>
+</div>
+
+{% endblock %}
