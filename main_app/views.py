@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from .models import Anime
+from .forms import EpisodeForm
 
 # Create your views here.
 def home(request):
@@ -16,5 +17,10 @@ def anime_index(request):
 
 def anime_detail(request, anime_id):
     anime = Anime.objects.get(id=anime_id)
-    context = {'anime_data': anime}
+    episode_form = EpisodeForm()
+
+    context = {
+        'anime_data': anime,
+        'episode_form': episode_form
+    }
     return render(request, 'anime/detail.html', context)
