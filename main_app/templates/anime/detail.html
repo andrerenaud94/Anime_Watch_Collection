@@ -8,15 +8,59 @@ Detail
 
 <h1>Show Details</h1>
 
-<div class="card">
-  <div class="card-content">
-    <span class="card-title">{{ anime_data.name }}</span>
-    <p>Episodes: {{ anime_data.episodes }}</p>
-    <br />
-    <p>Description: {{ anime_data.description }}</p>
-    <br />
-    <p>Category: {{anime_data.category}}</p>
+<div class="row">
+
+  <div class="col s6">
+    <div class="card">
+      <div class="card-content">
+        <span class="card-title">{{ anime_data.name }}</span>
+        <p>Episodes: {{ anime_data.episodes }}</p>
+        <br />
+        <p>Description: {{ anime_data.description }}</p>
+        <br />
+        <p>Category: {{anime_data.category}}</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="col s6">
+    <form action="{% url 'add_episode' anime_data.id %}" method="POST">
+      {% csrf_token %}
+      {{episode_form.as_p}}
+      <input type="submit" value="Add Episode" class="btn">
+    </form>
   </div>
 </div>
+
+<table class="striped">
+  <thead>
+    <tr>
+      <th>Episode Number</th>
+      <th>Episode Title</th>
+      <th>Main/Filler</th>
+      <th>Description</th>
+      <th>Link</th>
+      <tbody>
+        {% for episode in anime_data.episode_set.all %}
+        <tr>
+          <td>{{episode.number}}</td>
+          <td>{{episode.name}}</td>
+          <td>{{episode.get_eptype_display}}</td>
+          <td>{{episode.description}}</td>
+          <td><a href="{{episode.link}}" target="_blank">Link</a></td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </tr>
+  </thead>
+</table>
+
+
+<script>
+  const selectEl = document.getElementById('id_eptype');
+  M.FormSelect.init(selectEl);
+</script>
+
+
 
 {% endblock %}

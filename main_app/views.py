@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models import Anime
 from .forms import EpisodeForm
@@ -24,3 +24,13 @@ def anime_detail(request, anime_id):
         'episode_form': episode_form
     }
     return render(request, 'anime/detail.html', context)
+
+def add_episode(request, anime_id):
+    form = EpisodeForm(request.POST)
+
+    if form.is_valid():
+        new_episode = form.save(commit=False)
+        new_episode.anime_id = anime_id
+        new_episode.save()
+    
+    return redirect('anime_detail', anime_id=anime_id)
