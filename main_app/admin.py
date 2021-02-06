@@ -1,7 +1,8 @@
 from django.contrib import admin
-from .models import Anime
-from .models import Episode
+from .models import *
+
 
 # Register your models here.
 admin.site.register(Anime)
 admin.site.register(Episode)
+admin.site.register(Profile)

@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{ current_user.username }}
+{% endblock %}
+
+{% block content %}
+<h1>{{ current_user.username }}'s Profile</h1>
+
+
+
+<div class="row">
+    <div class="col s6">
+        <h3>Favorite Anime</h3>
+        {% for anime in current_user.profile.animes.all %}
+        <div class="card">
+            <div class="card-content">
+                <p>{{anime.name}}</p>
+            </div>
+        </div>
+    {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

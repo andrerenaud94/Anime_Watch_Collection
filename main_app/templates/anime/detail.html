@@ -20,16 +20,33 @@ Detail
         <br />
         <p>Category: {{anime_data.category}}</p>
       </div>
+
+
+      {% if user.is_authenticated %}
+        <div class="row">
+          <div class="card-action">
+            {% if current_user.profile.is_admin %}
+
+              <a href="{% url 'edit_anime' anime_data.id %}" class="btn">Edit</a>
+              
+              <button type="submit" class="btn">Delete</button>
+            {% endif %}
+              <button type="submit" class="btn">Favorite</button>
+          </div>
+        </div>
+      {% endif %}
     </div>
   </div>
 
-  <div class="col s6">
-    <form action="{% url 'add_episode' anime_data.id %}" method="POST">
-      {% csrf_token %}
-      {{episode_form.as_p}}
-      <input type="submit" value="Add Episode" class="btn">
-    </form>
-  </div>
+  {% if current_user.profile.is_admin %}
+    <div class="col s6">
+      <form action="{% url 'add_episode' anime_data.id %}" method="POST">
+        {% csrf_token %}
+        {{episode_form.as_p}}
+        <input type="submit" value="Add Episode" class="btn">
+      </form>
+    </div>
+  {% endif %}
 </div>
 
 <table class="striped">

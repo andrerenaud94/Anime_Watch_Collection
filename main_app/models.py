@@ -33,14 +33,12 @@ class Episode(models.Model):
     def __str__(self):
         return f'Episode {self.number} titled {self.name}'
 
-class User(models.Model):
-    name = models.CharField(max_length=250)
-    username = models.CharField(max_length=250)
-    password = models.CharField(max_length=250)
-    email = models.EmailField(max_length=250)
+class Profile(models.Model):
+    is_admin = models.BooleanField(default=False)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
 
-    animes = models.ManyToManyField(Anime)
-    episodes = models.ManyToManyField(Episode)
+    animes = models.ManyToManyField(Anime, blank=True)
+    episodes = models.ManyToManyField(Episode, blank=True)
 
     def __str__(self):
-        return f'User: {self.username}'
+        return f'{self.user} profile id: {self.user.id}'
