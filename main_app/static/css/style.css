@@ -10,3 +10,9 @@ footer {
   padding-top: 0;
   text-align: right;
 }
+#add-card{
+  margin-top: 50px;
+}
+#id_description{
+  height: 6rem;
+}

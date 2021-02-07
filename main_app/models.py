@@ -57,7 +57,7 @@ class Profile(models.Model):
 
 class Article(models.Model):
     is_featured = models.BooleanField(default=False)
-    image = models.ImageField()
+    image = models.URLField(max_length=250)
     title = models.CharField(max_length=250)
     body = models.TextField()
 

@@ -13,18 +13,30 @@ Home
             <section>
                 <h5>Site News</h5>
                 <hr />
+                {% for article in articles %}
+                    {% if article.is_featured %}
+                        <div class="card ">
+                            <div class="card-content light-blue lighten-5">
+                                <span class="card-title"><strong>{{article.title}}</strong></span>
+                            </div>
+                            <div class="card-action">
+                                <p>{{article.body}}</p>
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
             </section>
         </div>
 
         <div class="col s4">
 
             <section>
-                <h6>Featured Anime</h6>
+                <h5>Featured Anime</h5>
                 <hr />
                 {% for anime in animes %}
                     {% if anime.is_featured %}
                         <a href="{% url 'anime_detail' anime.id %}" style="color: black;">
-                            <div class="card light-blue lighten-4">
+                            <div class="card light-blue lighten-5">
                                 <div class="card-content">
                                     <span class="card-title">{{anime.name}}</span>
                                 </div>
@@ -36,12 +48,12 @@ Home
             <br />
 
             <section>
-                <h6>Featured Episodes</h6>
+                <h5>Featured Episodes</h5>
                 <hr />
                 {% for episode in episodes %}
                     {% if episode.is_featured %}
                         <a href="{{episode.link}}" target="_blank" style="color: black;">
-                            <div class="card light-blue lighten-4">
+                            <div class="card light-blue lighten-5">
                                 <div class="card-content">
                                     <span class="card-title">{{episode.name}}</span>
                                     <p>Episode #{{episode.number}}</p>

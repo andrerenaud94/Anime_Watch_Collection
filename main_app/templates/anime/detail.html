@@ -54,8 +54,8 @@ Detail
 <table class="striped">
   <thead>
     <tr>
-      <th>Episode Number</th>
-      <th>Episode Title</th>
+      <th>Episode</th>
+      <th style="text-align: center;">Episode Title</th>
       <th>Main/Filler</th>
       <th>Description</th>
       <th>Link</th>
@@ -70,11 +70,11 @@ Detail
       <tbody>
         {% for episode in anime_data.episode_set.all %}
         <tr>
-          <td>{{episode.number}}</td>
-          <td>{{episode.name}}</td>
+          <td style="text-align: center;">#{{episode.number}}</td>
+          <td style="text-align: center;">{{episode.name}}</td>
           <td>{{episode.get_eptype_display}}</td>
           <td>{{episode.description}}</td>
-          <td><a href="{{episode.link}}" target="_blank">Link</a></td>
+          <td><a href="{{episode.link}}" target="_blank">Watch Now</a></td>
           {% if user.is_authenticated %}
             <td><a href="{% url 'assoc_episode' anime_data.id episode.id %}" class="btn-small">Favorite</a></td>
           {% endif %}

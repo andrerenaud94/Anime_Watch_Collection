@@ -6,3 +6,4 @@ from .models import *
 admin.site.register(Anime)
 admin.site.register(Episode)
 admin.site.register(Profile)
+admin.site.register(Article)
