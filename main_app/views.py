@@ -36,7 +36,13 @@ def profile(request):
 
 
 def home(request):
-    return render(request, 'home.html')
+    anime = Anime.objects.all()
+    episode = Episode.objects.all()
+    context = {
+        'animes': anime,
+        'episodes': episode
+    }
+    return render(request, 'home.html', context)
 
 
 
