@@ -13,15 +13,17 @@
     <div class="col s6">
         <h3>Favorite Anime</h3>
         {% for anime in current_user.profile.animes.all %}
-            <div class="card light-blue lighten-5">
-                <div class="card-content">
-                    <h6>{{anime.name}}</h6>
-                </div>
+            <a href="{% url 'anime_detail' anime.id %}" style="color: black;">
+                <div class="card light-blue lighten-5">
+                    <div class="card-content">
+                        <h6>{{anime.name}}</h6>
+                    </div>
 
-                <div class="card-action">
-                    <a href="{% url 'unassoc_anime' current_user.id anime.id %}" class="btn-small">Un-Favorite</a>
+                    <div class="card-action">
+                        <a href="{% url 'unassoc_anime' current_user.id anime.id %}" class="btn-small">Un-Favorite</a>
+                    </div>
                 </div>
-            </div>
+            </a>  
         {% endfor %}
     </div>
 
