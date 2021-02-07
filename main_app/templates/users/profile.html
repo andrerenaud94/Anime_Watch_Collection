@@ -37,7 +37,7 @@
                 </div>
 
                 <div class="card-action">
-                    <a href="" class="btn-small purple">Un-Favorite</a>
+                    <a href="{% url 'unassoc_episode' current_user.id episode.id %}" class="btn-small purple">Un-Favorite</a>
                 </div>
             </div>
         {% endfor %}

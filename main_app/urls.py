@@ -12,7 +12,8 @@ urlpatterns = [
     path('anime/<int:anime_id>/<int:episode_id>/assoc_episode/', views.assoc_episode, name='assoc_episode'),
 
     #UN-FAVORITE PATHS
-    path('users/profile/<int:user_id>/<int:anime_id>', views.unassoc_anime, name='unassoc_anime'),
+    path('users/profile/<int:user_id>/<int:anime_id>/remove_anime/', views.unassoc_anime, name='unassoc_anime'),
+    path('users/profile/<int:user_id>/<int:episode_id>/remove_episode/', views.unassoc_episode, name='unassoc_episode'),
 
     #CRUD PATHS (ANIME)
     path('anime/add_anime', views.add_anime, name='add_anime'),
@@ -25,5 +26,9 @@ urlpatterns = [
     path('anime/<int:anime_id>/<int:episode_id>/delete/', views.delete_episode, name='delete_episode'),
 
     #AUTH PATHS
-    path('users/profile/', views.profile, name='profile')
+    path('users/profile/', views.profile, name='profile'),
+    path('accounts/signup/', views.signup, name='signup'),
+
+    #BONUS PATHS
+    path('search/', views.search, name='search')
 ]

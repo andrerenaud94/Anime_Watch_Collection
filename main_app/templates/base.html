@@ -19,6 +19,14 @@
           <li><a href="/" class="left brand-logo">&nbsp;&nbsp;Anime Collection</a></li>
         </ul>
         <ul class="right">
+          <li>
+            <form action="{% url 'search' %}" method="GET" style="display: inline-flex;">
+                <div class="input-field">
+                  <input name="search" type="" class="form-control" id="" placeholder="  Search..">
+                </div>
+              <button type="submit" class="btn-small" style="margin-left: 10px; margin-top: 15px; margin-right: 20px;">Search</button>
+            </form>
+          </li>
           <li><a href="/">Home</a></li>
           <li><a href="/about">About</a></li>
           <li><a href="/anime">All Anime</a></li>
@@ -28,6 +36,7 @@
             <li><a href="{% url 'logout' %}">Log Out</a></li>
           {% else %}
             <li><a href="{% url 'login' %}">Log In</a></li>
+            <li><a href="{% url 'signup' %}">Sign Up</a></li>
           {% endif %}
         </ul>
       </div>

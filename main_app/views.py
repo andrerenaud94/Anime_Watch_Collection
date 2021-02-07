@@ -1,12 +1,30 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from .models import Anime, Episode, Profile
+from .models import *
 from .forms import *
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
+from django.db.models import Q
 
 # Create your views here.
+def signup(request):
+    error_message = ''
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            return redirect('profile')
+        else:
+            error_message = 'Invalid sign up - Try again'
+    form = UserCreationForm()
+    context = {'form': form, 'error_message': error_message}
+    return render(request, 'registration/signup.html', context)
+
+
+
+
 def profile(request):
     context = {
         'current_user': request.user
@@ -163,3 +181,26 @@ def assoc_episode(request, anime_id, episode_id):
     user = request.user
     user.profile.episodes.add(episode_id)
     return redirect('anime_detail', anime_id=anime_id)
+
+
+
+
+def unassoc_episode(request, user_id, episode_id):
+    user = request.user
+    user.profile.episodes.remove(episode_id)
+    return redirect('profile')
+
+
+
+
+def search(request):
+    query=None
+    results = []
+    if request.method == 'GET':
+        query = request.GET.get('search')
+        results = Anime.objects.filter(Q(name__icontains=query) | Q(description__icontains=query))
+    context = {
+        'query': query,
+        'results': results
+    }
+    return render(request, 'search.html', context)
