@@ -13,6 +13,9 @@ class Anime(models.Model):
         return self.name
 
 
+
+
+
 MAIN = (
     ('M', 'Main Story'),
     ('F', 'Filler')
@@ -35,6 +38,10 @@ class Episode(models.Model):
     def __str__(self):
         return f'Episode {self.number} titled {self.name}'
 
+
+
+
+
 class Profile(models.Model):
     is_admin = models.BooleanField(default=False)
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -44,3 +51,15 @@ class Profile(models.Model):
 
     def __str__(self):
         return f'{self.user} profile id: {self.user.id}'
+
+
+
+
+class Article(models.Model):
+    is_featured = models.BooleanField(default=False)
+    image = models.ImageField()
+    title = models.CharField(max_length=250)
+    body = models.TextField()
+
+    def __str__(self):
+        return f'Article: {self.title}'
