@@ -6,6 +6,12 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
+import uuid
+import boto3
+
+
+S3_BASE_URL = 'https://s3-us-east-2.amazonaws.com/'
+BUCKET = 'animecollector'
 
 # Create your views here.
 def signup(request):
@@ -207,3 +213,20 @@ def search(request):
         'results2': results2
     }
     return render(request, 'search.html', context)
+
+
+
+
+def add_photo(request, anime_id):
+    photo_file = request.FILES.get('photo-file', None)
+    if photo_file:
+        s3 = boto3.client('s3')
+        key = uuid.uuid4().hex[:6] + photo_file.name[photo_file.name.rfind('.'):]
+        try:
+            s3.upload_fileobj(photo_file, BUCKET, key)
+            url = f"{S3_BASE_URL}{BUCKET}/{key}"
+            photo = Photo(url=url, anime_id=anime_id)
+            photo.save()
+        except:
+            print('An error occurred uploading file to S3')
+    return redirect('anime_detail', anime_id=anime_id)

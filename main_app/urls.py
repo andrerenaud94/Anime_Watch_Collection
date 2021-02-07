@@ -31,7 +31,8 @@ urlpatterns = [
     path('accounts/signup/', views.signup, name='signup'),
 
     #BONUS PATHS
-    path('search/', views.search, name='search')
+    path('search/', views.search, name='search'),
+    path('anime/<int:anime_id>/add_photo/', views.add_photo, name='add_photo')
 ]
 
 

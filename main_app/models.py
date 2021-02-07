@@ -63,3 +63,11 @@ class Article(models.Model):
 
     def __str__(self):
         return f'Article: {self.title}'
+
+
+class Photo(models.Model):
+    url = models.CharField(max_length=200)
+    anime = models.ForeignKey(Anime, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"Photo for cat_id: {self.cat_id} @{self.url}"
