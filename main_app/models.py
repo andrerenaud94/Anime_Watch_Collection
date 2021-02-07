@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 class Anime(models.Model):
+    is_featured = models.BooleanField(default=False)
     name = models.CharField(max_length=250)
     description = models.TextField(max_length=250)
     episodes = models.IntegerField()
@@ -18,6 +19,7 @@ MAIN = (
 )
 
 class Episode(models.Model):
+    is_featured = models.BooleanField(default=False)
     number = models.IntegerField()
     name = models.CharField(max_length=250)
     eptype = models.CharField(

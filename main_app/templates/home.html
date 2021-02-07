@@ -17,8 +17,40 @@ Home
         </div>
 
         <div class="col s4">
+
             <section>
-                <h6>Coming Soon</h6>
+                <h6>Featured Anime</h6>
+                <hr />
+                {% for anime in animes %}
+                    {% if anime.is_featured %}
+                        <a href="{% url 'anime_detail' anime.id %}" style="color: black;">
+                            <div class="card light-blue lighten-4">
+                                <div class="card-content">
+                                    <span class="card-title">{{anime.name}}</span>
+                                </div>
+                            </div>
+                        </a>
+                    {% endif %} 
+                {% endfor %}
+            </section>
+            <br />
+
+            <section>
+                <h6>Featured Episodes</h6>
+                <hr />
+                {% for episode in episodes %}
+                    {% if episode.is_featured %}
+                        <a href="{{episode.link}}" style="color: black;">
+                            <div class="card light-blue lighten-4">
+                                <div class="card-content">
+                                    <span class="card-title">{{episode.name}}</span>
+                                    <p>Episode #{{episode.number}}</p>
+                                    <p>Anime: {{episode.anime}}</p>
+                                </div>
+                            </div>
+                        </a>
+                    {% endif %}
+                {% endfor %}
                 <hr />
             </section>
         </div>
