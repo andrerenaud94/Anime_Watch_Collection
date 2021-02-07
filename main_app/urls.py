@@ -32,3 +32,7 @@ urlpatterns = [
     #BONUS PATHS
     path('search/', views.search, name='search')
 ]
+
+
+#RESOURCES#
+# https://www.youtube.com/watch?v=cP4HKyqNQsw
