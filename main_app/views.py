@@ -41,14 +41,6 @@ def home(request):
 
 
 
-
-def about(request):
-    return render(request, 'about.html')
-
-
-
-
-
 def anime_index(request):
     anime = Anime.objects.all()
     context = {
