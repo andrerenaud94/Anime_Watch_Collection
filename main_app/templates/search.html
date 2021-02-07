@@ -7,27 +7,48 @@
 {% block content %}
 
     {% if query %}
-    <h1>Anime containing "{{query}}"</h1>
-            <h3>
-                {% with results.count as total_results %}
-                Found {{total_results}} result{{total_results|pluralize}}
-                {% endwith %}
-            </h3>
-        {% for c in results %}
-            <a href="{% url 'anime_detail' c.id %}">
-                <div class="card">
-                    <div class="card-content">
-                        <span class="card-title">{{c.name}}</span>
-                        <p>Episodes: {{c.episodes}}</p>
-                        <p>{{c.category}}</p>
-                        <p>{{c.description}}</p>
+        <h1>Anime containing "{{query}}"</h1>
+                <h3>
+                    {% with results.count as total_results %}
+                    Found {{total_results}} result{{total_results|pluralize}}
+                    {% endwith %}
+                </h3>
+            {% for c in results %}
+                <a href="{% url 'anime_detail' c.id %}">
+                    <div class="card">
+                        <div class="card-content">
+                            <span class="card-title">{{c.name}}</span>
+                            <p>Episodes: {{c.episodes}}</p>
+                            <p>{{c.category}}</p>
+                            <p>{{c.description}}</p>
+                        </div>
                     </div>
-                </div>
-            </a>
-
-        {% empty %}
-        <h4>There are no results for your query</h4>
-        {% endfor %}
+                </a>
+            {% empty %}
+                <h4>There are no results for your query</h4>
+            {% endfor %}
+        
+        <hr />
+        <h1>Episodes containing "{{query}}"</h1>
+                <h3>
+                    {% with results2.count as total_results2 %}
+                    Found {{total_results2}} result{{total_results2|pluralize}}
+                    {% endwith %}
+                </h3>
+            {% for e in results2 %}
+                <a href="{{e.link}}">
+                    <div class="card">
+                        <div class="card-content">
+                            <span class="card-title">{{e.name}}</span>
+                            <p>Anime: {{e.anime}}</p>
+                            <p>Episode #{{e.number}}</p>
+                            <p>{{e.description}}</p>
+                        </div>
+                    </div>
+                </a>
+            {% empty %}
+                <h4>There are no results for your query</h4>
+            {% endfor %}
     
     {% else %}
         <h2>NO QUERY: ERROR</h2>

@@ -196,11 +196,14 @@ def unassoc_episode(request, user_id, episode_id):
 def search(request):
     query=None
     results = []
+    results2 = []
     if request.method == 'GET':
         query = request.GET.get('search')
         results = Anime.objects.filter(Q(name__icontains=query) | Q(description__icontains=query))
+        results2 = Episode.objects.filter(Q(name__icontains=query) | Q(description__icontains=query))
     context = {
         'query': query,
-        'results': results
+        'results': results,
+        'results2': results2
     }
     return render(request, 'search.html', context)

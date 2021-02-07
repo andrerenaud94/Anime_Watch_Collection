@@ -19,7 +19,7 @@
                 </div>
 
                 <div class="card-action">
-                    <a href="{% url 'unassoc_anime' current_user.id anime.id %}" class="btn-small purple">Un-Favorite</a>
+                    <a href="{% url 'unassoc_anime' current_user.id anime.id %}" class="btn-small">Un-Favorite</a>
                 </div>
             </div>
         {% endfor %}
@@ -37,7 +37,7 @@
                 </div>
 
                 <div class="card-action">
-                    <a href="{% url 'unassoc_episode' current_user.id episode.id %}" class="btn-small purple">Un-Favorite</a>
+                    <a href="{% url 'unassoc_episode' current_user.id episode.id %}" class="btn-small">Un-Favorite</a>
                 </div>
             </div>
         {% endfor %}
