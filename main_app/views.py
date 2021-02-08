@@ -217,7 +217,7 @@ def search(request):
 
 
 
-def add_photo(request, anime_id):
+def add_photo_anime(request, anime_id):
     photo_file = request.FILES.get('photo-file', None)
     if photo_file:
         s3 = boto3.client('s3')

@@ -41,7 +41,7 @@ Detail
               <button type="submit" class="waves-effect waves-light btn-small">Delete</button>
             </form>
 
-            <form action="{% url 'add_photo' anime_data.id %}" enctype="multipart/form-data" method="POST" style="display: inline;">
+            <form action="{% url 'add_photo_anime' anime_data.id %}" enctype="multipart/form-data" method="POST" style="display: inline;">
               {% csrf_token %}
               <input type="submit" class="btn-small" value="Upload Photo">
               <input type="file" name="photo-file" id="photo_input">

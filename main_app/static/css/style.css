@@ -19,3 +19,10 @@ footer {
 #photo_input{
   margin-top: 7px;
 }
+.container{
+  width: 100%;
+  max-width: 1400px;
+}
+.card-panel{
+  padding: 12px;
+}
