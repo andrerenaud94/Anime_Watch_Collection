@@ -70,4 +70,14 @@ class Photo(models.Model):
     anime = models.ForeignKey(Anime, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f"Photo for cat_id: {self.cat_id} @{self.url}"
+        return f'Photo{self.id}'
+
+
+
+
+class Photo2(models.Model):
+    url = models.CharField(max_length=200)
+    episode = models.ForeignKey(Episode, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f'Photo{self.id}'

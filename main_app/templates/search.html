@@ -14,13 +14,22 @@
                     {% endwith %}
                 </h3>
             {% for c in results %}
-                <a href="{% url 'anime_detail' c.id %}">
-                    <div class="card">
-                        <div class="card-content">
-                            <span class="card-title">{{c.name}}</span>
-                            <p>Episodes: {{c.episodes}}</p>
-                            <p>{{c.category}}</p>
-                            <p>{{c.description}}</p>
+                <a href="{% url 'anime_detail' c.id %}" style="color: black;">
+                    <div class="row">
+                        <div class="col s2">
+                            {% for photo in c.photo_set.all %}
+                                <img src="{{photo.url}}" class="responsive-img card-panel">
+                            {% endfor %}
+                        </div>
+                        <div class="col s10">
+                            <div class="card">
+                                <div class="card-content">
+                                    <span class="card-title">{{c.name}}</span>
+                                    <p>Episodes: {{c.episodes}}</p>
+                                    <p>{{c.category}}</p>
+                                    <p>{{c.description}}</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </a>
@@ -36,13 +45,22 @@
                     {% endwith %}
                 </h3>
             {% for e in results2 %}
-                <a href="{{e.link}}" target="_blank">
-                    <div class="card">
-                        <div class="card-content">
-                            <span class="card-title">{{e.name}}</span>
-                            <p>Anime: {{e.anime}}</p>
-                            <p>Episode #{{e.number}}</p>
-                            <p>{{e.description}}</p>
+                <a href="{{e.link}}" target="_blank" style="color: black;">
+                    <div class="row">
+                        <div class="col s2">
+                            {% for photo in e.photo2_set.all %}
+                                <img src="{{photo.url}}" class="responsive-img card-panel">
+                            {% endfor %}
+                        </div>
+                        <div class="col s10">
+                            <div class="card">
+                                <div class="card-content">
+                                    <span class="card-title">{{e.name}}</span>
+                                    <p>Anime: {{e.anime}}</p>
+                                    <p>Episode #{{e.number}}</p>
+                                    <p>{{e.description}}</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </a>

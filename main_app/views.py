@@ -141,12 +141,14 @@ def edit_episode(request, anime_id, episode_id):
 
 def anime_detail(request, anime_id):
     anime = Anime.objects.get(id=anime_id)
+    episode = Episode.objects.all()
     episode_form = EpisodeForm()
 
     context = {
         'anime_data': anime,
         'episode_form': episode_form,
-        'current_user': request.user
+        'current_user': request.user,
+        'episode_data': episode
     }
     return render(request, 'anime/detail.html', context)
 
@@ -226,6 +228,23 @@ def add_photo_anime(request, anime_id):
             s3.upload_fileobj(photo_file, BUCKET, key)
             url = f"{S3_BASE_URL}{BUCKET}/{key}"
             photo = Photo(url=url, anime_id=anime_id)
+            photo.save()
+        except:
+            print('An error occurred uploading file to S3')
+    return redirect('anime_detail', anime_id=anime_id)
+
+
+
+
+def add_photo_episode(request, anime_id, episode_id):
+    photo_file = request.FILES.get('photo-file', None)
+    if photo_file:
+        s3 = boto3.client('s3')
+        key = uuid.uuid4().hex[:6] + photo_file.name[photo_file.name.rfind('.'):]
+        try:
+            s3.upload_fileobj(photo_file, BUCKET, key)
+            url = f"{S3_BASE_URL}{BUCKET}/{key}"
+            photo = Photo2(url=url, episode_id=episode_id)
             photo.save()
         except:
             print('An error occurred uploading file to S3')

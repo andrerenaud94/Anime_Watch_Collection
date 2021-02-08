@@ -26,3 +26,20 @@ footer {
 .card-panel{
   padding: 12px;
 }
+#profile_card_row{
+  margin-bottom: 10px;
+}
+#profile_anime_name{
+  margin: 0 0 .912rem 0;
+}
+#profile_card_image{
+  margin-top: 15px;
+  margin-left: 15px;
+}
+#profile_card_content{
+  padding: 5px;
+}
+#thumbnail{
+  max-width: 100px;
+  max-height: 100px;
+}

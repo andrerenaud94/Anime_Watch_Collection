@@ -14,12 +14,21 @@
         <h3>Favorite Anime</h3>
         {% for anime in current_user.profile.animes.all %}
             <a href="{% url 'anime_detail' anime.id %}" style="color: black;">
-                <div class="card light-blue lighten-5">
-                    <div class="card-content">
-                        <h6>{{anime.name}}</h6>
+                <div class="card">
+                    <div class="row" id="profile_card_row">
+                        {% for photo in anime.photo_set.all %}
+                        <div class="col s4" id="profile_card_image">
+                            <img src="{{photo.url}}" class="responsive-img card-panel">
+                        </div>
+                        {% endfor %}
+                        <div class="col s7">
+                            <div class="card-content" id="profile_card_content">
+                                <h4 id="profile_anime_name">{{anime.name}}</h4>
+                                <p>{{anime.description}}</p>
+                            </div> 
+                        </div>
                     </div>
-
-                    <div class="card-action">
+                    <div class="card-action white">
                         <a href="{% url 'unassoc_anime' current_user.id anime.id %}" class="btn-small">Un-Favorite</a>
                     </div>
                 </div>
@@ -31,14 +40,24 @@
         <h3>Favorite Episodes</h3>
 
         {% for episode in current_user.profile.episodes.all %}
-            <div class="card light-blue lighten-5">
-                <div class="card-content">
-                    <h6>{{episode.name}}</h6>
-                    <p>{{episode.anime}}</p>
-                    <a href="{{episode.link}}">Watch Now</a>
+            <div class="card">
+                <div class="row" id="profile_card_row">
+                    {% for photo in episode.photo2_set.all %}
+                        <div class="col s4" id="profile_card_image">
+                            <img src="{{photo.url}}" class="responsive-img card-panel">
+                        </div>
+                    {% endfor %}
+                    <div class="col s7">
+                        <div class="card-content" id="profile_card_content">
+                            <h4 id="profile_anime_name">{{episode.name}}</h4>
+                            <p>{{episode.anime}}</p>
+                            <p>{{episode.description}}</p>
+                            <a href="{{episode.link}}">Watch Now</a>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="card-action">
+                <div class="card-action white">
                     <a href="{% url 'unassoc_episode' current_user.id episode.id %}" class="btn-small">Un-Favorite</a>
                 </div>
             </div>

@@ -35,13 +35,23 @@ Home
                 <hr />
                 {% for anime in animes %}
                     {% if anime.is_featured %}
-                        <a href="{% url 'anime_detail' anime.id %}" style="color: black;">
-                            <div class="card light-blue lighten-5">
-                                <div class="card-content">
-                                    <span class="card-title">{{anime.name}}</span>
+                        <a href="{% url 'anime_detail' anime.id %}">
+                            <div class="card">
+                                <div class="row" id="profile_card_row">
+                                    {% for photo in anime.photo_set.all %}
+                                    <div class="col s4" id="profile_card_image">
+                                        <img src="{{photo.url}}" class="responsive-img card-panel">
+                                    </div>
+                                    {% endfor %}
+                                    <div class="col s7">
+                                        <div class="card-content" id="profile_card_content">
+                                            <h5>{{anime.name}}</h5>
+                                            <p>Episodes: {{anime.episodes}}</p>
+                                        </div> 
+                                    </div>
                                 </div>
                             </div>
-                        </a>
+                        </a>  
                     {% endif %} 
                 {% endfor %}
             </section>
@@ -52,15 +62,24 @@ Home
                 <hr />
                 {% for episode in episodes %}
                     {% if episode.is_featured %}
-                        <a href="{{episode.link}}" target="_blank" style="color: black;">
-                            <div class="card light-blue lighten-5">
-                                <div class="card-content">
-                                    <span class="card-title">{{episode.name}}</span>
-                                    <p>Episode #{{episode.number}}</p>
-                                    <p>Anime: {{episode.anime}}</p>
+                    <a href="{{episode.link}}" target="_blank">
+                        <div class="card">
+                            <div class="row" id="profile_card_row">
+                                {% for photo in episode.photo2_set.all %}
+                                <div class="col s4" id="profile_card_image">
+                                    <img src="{{photo.url}}" class="responsive-img card-panel">
+                                </div>
+                                {% endfor %}
+                                <div class="col s7">
+                                    <div class="card-content" id="profile_card_content">
+                                        <h5>{{episode.name}}</h5>
+                                        <p>Anime: {{episode.anime}}</p>
+                                        <p>Episodes #{{episode.number}}</p>
+                                    </div> 
                                 </div>
                             </div>
-                        </a>
+                        </div>
+                    </a>
                     {% endif %}
                 {% endfor %}
                 <hr />

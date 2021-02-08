@@ -32,7 +32,8 @@ urlpatterns = [
 
     #BONUS PATHS
     path('search/', views.search, name='search'),
-    path('anime/<int:anime_id>/add_photo/', views.add_photo_anime, name='add_photo_anime')
+    path('anime/<int:anime_id>/add_photo/', views.add_photo_anime, name='add_photo_anime'),
+    path('anime/<int:anime_id>/<int:episode_id>/add_photo', views.add_photo_episode, name='add_photo_episode')
 ]
 
 
